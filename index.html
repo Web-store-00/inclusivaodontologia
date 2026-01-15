@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inclusiva Odontologia</title>
+
+  <style>
+    :root {
+      --bg-page: #dfe5ea;
+      --blue-main: #226c9e;
+      --blue-dark: #1b567d;
+      --text-main: #1f3a4d;
+      --white: #ffffff;
+      --radius-box: 28px;
+      --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* LAYOUT GERAL */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 40px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* LOGO E TEXTO PRINCIPAL */
+    .logo {
+      width: 220px;
+      margin: 0 auto 18px;
+    }
+
+    .headline {
+      text-align: center;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .headline strong {
+      font-weight: 700;
+    }
+
+    /* BOTÕES GRANDES */
+    .big-box {
+      background: var(--blue-main);
+      color: var(--white);
+      border-radius: var(--radius-box);
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 18px;
+    }
+
+    .big-box__title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    .big-box__subtitle {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* BOTÃO WHATSAPP DENTRO DO BOX */
+    .whats-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: var(--white);
+      color: var(--blue-main);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .whats-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--blue-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* BOX DE DÚVIDAS (ACCORDION) */
+    .faq-box {
+      background: var(--blue-main);
+      color: var(--white);
+      border-radius: var(--radius-box);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .faq-header {
+      padding: 18px 20px 10px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .faq-divider {
+      width: 80%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.6);
+      margin: 4px auto 8px;
+    }
+
+    .faq-first-question {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .faq-arrow {
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-box.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* CONTEÚDO EXPANDIDO */
+    .faq-content-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #1f5b88;
+    }
+
+    .faq-content-inner {
+      padding: 10px 20px 18px;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 10px;
+    }
+
+    .faq-question {
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .faq-answer {
+      font-weight: 400;
+    }
+
+    /* BOX LOCALIZAÇÃO */
+    .location-box {
+      background: var(--blue-main);
+      color: var(--white);
+      border-radius: var(--radius-box);
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .location-pin {
+      font-size: 2.4rem;
+    }
+
+    .location-text-main {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .location-btn {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--blue-main);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    /* DESKTOP */
+    @media (min-width: 768px) {
+      .page {
+        padding: 32px 0 48px;
+      }
+
+      .card {
+        max-width: 480px;
+      }
+
+      .headline {
+        font-size: 1.05rem;
+      }
+
+      .big-box__title,
+      .faq-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="card" aria-label="Inclusiva Odontologia - página inicial">
+      <!-- LOGO (substitua o src pela sua imagem real) -->
+      <div class="logo">
+        <img src="imagens/logo-inclusiva.png" alt="Logo Inclusiva Odontologia" />
+      </div>
+
+      <!-- TEXTO PRINCIPAL -->
+      <p class="headline">
+        Especialistas em atender quem outros dentistas não conseguem:<br />
+        <strong>pacientes com necessidades especiais, fobia dentária ou
+        ansiedade extrema.</strong>
+      </p>
+
+      <!-- BOX: AGENDE SUA CONSULTA -->
+      <section class="big-box" aria-label="Agendamento de consulta">
+        <div class="big-box__title">Agende sua consulta!</div>
+        <div class="big-box__subtitle">Atendimento humanizado e com sedação segura.</div>
+
+        <a
+          class="whats-btn"
+          href="https://wa.me/5599999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20na%20Inclusiva%20Odontologia."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="whats-icon">✆</span>
+          <span>clique aqui</span>
+        </a>
+      </section>
+
+      <!-- BOX: TIRE SUAS DÚVIDAS (ACCORDION) -->
+      <section class="faq-box" id="faqBox">
+        <div class="faq-header" id="faqToggle" aria-expanded="false">
+          <div class="faq-title">Tire suas dúvidas</div>
+          <div class="faq-divider"></div>
+          <!-- PRIMEIRA PERGUNTA (sempre visível) -->
+          <div class="faq-first-question">
+            Quem pode ser atendido na Inclusiva?
+          </div>
+          <!-- SETA -->
+          <div class="faq-arrow" aria-hidden="true">⌄</div>
+        </div>
+
+        <!-- CONTEÚDO EXPANDIDO -->
+        <div class="faq-content-wrapper" id="faqContent">
+          <div class="faq-content-inner">
+            <div class="faq-item">
+              <div class="faq-question">
+                Quem pode ser atendido na Inclusiva?
+              </div>
+              <div class="faq-answer">
+                Atendemos crianças, adultos e idosos com necessidades especiais,
+                pessoas com fobia de dentista, ansiedade extrema ou que já
+                tiveram experiências traumáticas em consultório.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                Vocês trabalham com sedação?
+              </div>
+              <div class="faq-answer">
+                Sim. Trabalhamos com sedação monitorada por médico anestesista,
+                considerada padrão ouro para pacientes com medo intenso ou
+                quadro médico mais delicado.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                A sedação é segura?
+              </div>
+              <div class="faq-answer">
+                Sim. Antes da sedação é feita avaliação clínica, revisão de
+                exames e todo o procedimento é acompanhado por anestesista com
+                monitorização contínua de sinais vitais.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                Atendem apenas pacientes com necessidades especiais?
+              </div>
+              <div class="faq-answer">
+                Não. Também recebemos pessoas que têm muito medo de dentista,
+                pacientes que adiam tratamento há anos, e familiares que
+                procuram um ambiente mais calmo e preparado.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                Como faço para agendar uma avaliação?
+              </div>
+              <div class="faq-answer">
+                Você pode clicar no botão de WhatsApp acima, enviar uma
+                mensagem rápida e nossa equipe fará algumas perguntas iniciais
+                para marcar o melhor horário para você ou seu familiar.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOX: LOCALIZAÇÃO -->
+      <section class="location-box" aria-label="Nossa localização">
+        <div class="location-pin">📍</div>
+
+        <div>
+          <div class="location-text-main">Nossa Localização</div>
+          <div>Estamos em endereço acessível e preparado para receber você.</div>
+
+          <a
+            class="location-btn"
+            href="https://www.google.com/maps"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Abrir Google Maps
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Accordion simples para o box "Tire suas dúvidas"
+    const faqBox = document.getElementById("faqBox");
+    const faqToggle = document.getElementById("faqToggle");
+    const faqContent = document.getElementById("faqContent");
+
+    function toggleFaq() {
+      const isOpen = faqBox.classList.contains("open");
+
+      if (isOpen) {
+        faqBox.classList.remove("open");
+        faqContent.style.maxHeight = "0px";
+        faqToggle.setAttribute("aria-expanded", "false");
+      } else {
+        faqBox.classList.add("open");
+        // altura automática com transição suave
+        faqContent.style.maxHeight = faqContent.scrollHeight + "px";
+        faqToggle.setAttribute("aria-expanded", "true");
+      }
+    }
+
+    faqToggle.addEventListener("click", toggleFaq);
+
+    // Garante que ao carregar, o conteúdo começa fechado
+    window.addEventListener("load", () => {
+      faqContent.style.maxHeight = "0px";
+    });
+  </script>
+</body>
+</html>
