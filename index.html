@@ -5,7 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inclusiva Odontologia</title>
 
+  <!-- TAG DO GOOGLE (GA4 / GOOGLE TAG MANAGER)
+       Cole aqui dentro o script que o Google te der -->
+  <!--
+  <script>
+    // EXEMPLO: Google Tag (gtag.js)
+    // Cole aqui o código do Google Analytics / Google Tag
+  </script>
+  -->
+
+  <!-- TAG DA META (PIXEL DO FACEBOOK/INSTAGRAM)
+       Cole aqui dentro o script que a Meta te der -->
+  <!--
+  <script>
+    // EXEMPLO: Meta Pixel
+    // Cole aqui o código do Pixel da Meta
+  </script>
+  -->
+
   <style>
+    /* Fonte Capitana */
     @import url('https://fonts.googleapis.com/css2?family=Capitana:wght@400;500;700;800&display=swap');
 
     :root {
@@ -58,8 +77,7 @@
     }
 
     /* LOGO E TEXTO PRINCIPAL */
-    .logo { 
-      
+    .logo {
       width: 220px;
       margin: 0 auto 18px;
     }
@@ -76,7 +94,7 @@
       font-weight: 700;
     }
 
-    /* BOTÕES GRANDES */
+    /* BOX AGENDE SUA CONSULTA */
     .big-box {
       background: var(--blue-main);
       color: var(--white);
@@ -100,7 +118,6 @@
       font-weight: 500;
     }
 
-    /* BOTÃO WHATSAPP DENTRO DO BOX */
     .whats-btn {
       display: inline-flex;
       align-items: center;
@@ -114,16 +131,18 @@
       font-size: 0.95rem;
     }
 
+    /* ÍCONE WHATSAPP COMO IMAGEM DE FUNDO
+       Substitua "COLE_AQUI_LINK_DA_IMAGEM_WHATSAPP" pelo link RAW da imagem */
     .whats-icon {
       width: 24px;
       height: 24px;
-      /* Substitua o src abaixo pelo link da sua imagem de ícone do WhatsApp */
-      background-image: url('background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/main/WhatsApp.svg.png');
+      background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/WhatsApp.svg.png');
       background-size: cover;
       background-position: center;
+      flex-shrink: 0;
     }
 
-    /* BOX DE DÚVIDAS (ACCORDION) */
+    /* BOX DÚVIDAS (ACCORDION) */
     .faq-box {
       background: var(--blue-main);
       color: var(--white);
@@ -171,7 +190,7 @@
       transform: rotate(180deg);
     }
 
-    /* CONTEÚDO EXPANDIDO */
+    /* CONTEÚDO EXPANDIDO (começa escondido) */
     .faq-content-wrapper {
       max-height: 0;
       overflow: hidden;
@@ -210,12 +229,13 @@
       gap: 14px;
     }
 
+    /* ÍCONE MAPA COMO IMAGEM DE FUNDO
+       Substitua "COLE_AQUI_LINK_DA_IMAGEM_MAPA" pelo link RAW da imagem */
     .location-pin {
       width: 48px;
       height: 48px;
       flex-shrink: 0;
-      /* Substitua o src abaixo pelo link da sua imagem de pin de localização */
-      background-image: url('background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/main/map.png');
+      background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/map.png');
       background-size: cover;
       background-position: center;
     }
@@ -262,9 +282,11 @@
 <body>
   <div class="page">
     <main class="card" aria-label="Inclusiva Odontologia - página inicial">
-      <!-- LOGO -->
+      <!-- LOGO
+           Substitua "COLE_AQUI_LINK_DA_LOGO" pelo link RAW da logo -->
+      
       <div class="logo">
-        <img src="https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/main/inclusiva%20logo.png" />
+        <img src="https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/inclusiva%20logo.png" alt="Logo Inclusiva Odontologia" />
       </div>
 
       <!-- TEXTO PRINCIPAL -->
@@ -285,7 +307,6 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <!-- Ícone do WhatsApp (substitua o background-image no CSS) -->
           <span class="whats-icon"></span>
           <span>clique aqui</span>
         </a>
@@ -304,7 +325,7 @@
           <div class="faq-arrow" aria-hidden="true">⌄</div>
         </div>
 
-        <!-- CONTEÚDO EXPANDIDO -->
+        <!-- CONTEÚDO EXPANDIDO (fica escondido até clicar) -->
         <div class="faq-content-wrapper" id="faqContent">
           <div class="faq-content-inner">
             <div class="faq-item">
@@ -367,7 +388,6 @@
 
       <!-- BOX: LOCALIZAÇÃO -->
       <section class="location-box" aria-label="Nossa localização">
-        <!-- Ícone de localização (substitua o background-image no CSS) -->
         <div class="location-pin"></div>
 
         <div>
@@ -409,10 +429,10 @@
 
     faqToggle.addEventListener("click", toggleFaq);
 
+    // Garante que começa fechado
     window.addEventListener("load", () => {
       faqContent.style.maxHeight = "0px";
     });
   </script>
 </body>
 </html>
-
