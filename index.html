@@ -20,7 +20,6 @@
   -->
 
   <style>
-    /* Fonte semelhante à Capitana (Google Fonts) */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
     * {
@@ -30,52 +29,95 @@
     }
 
     /* =====================================================
-       IMAGEM DE FUNDO
-       Tamanho ideal: 1080x1920px (mobile) | 1920x1080px (desktop)
-       Substitua COLE_AQUI_LINK_RAW_IMAGEM_FUNDO pelo link RAW
+       IMAGEM DE FUNDO — FIXA
+       A imagem NÃO rola com o conteúdo.
+       Em iOS, background-attachment:fixed não funciona nativamente,
+       por isso usamos um pseudo-elemento fixo separado.
     ===================================================== */
     body {
       font-family: 'Poppins', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
-      background-color: #9bbdd4;
-      background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/Imagem%20de%20fundo%20inclusiva.png');
-      background-size: cover;
-      background-position: center top;
-      background-attachment: fixed;
+      background-color: #9bbdd4; /* fallback */
       -webkit-font-smoothing: antialiased;
       color: #ffffff;
     }
 
+    /* CAMADA 1 — imagem de fundo fixa (funciona em iOS também) */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/Imagem%20de%20fundo%20inclusiva.png');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    /* CAMADA 2 — overlay escuro fixo para melhorar leitura */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
+      z-index: -1;
       background: rgba(15, 40, 65, 0.25);
       pointer-events: none;
-      z-index: 0;
     }
 
     img { max-width: 100%; display: block; }
     a   { text-decoration: none; color: inherit; }
 
+    /* LAYOUT */
     .page {
       position: relative;
       z-index: 1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 20px 14px 36px;
+      padding: 0 14px 36px;
     }
 
     .card {
       width: 100%;
-      max-width: 336px; /* ~20% menor que 420px */
+      max-width: 336px;
       margin: 0 auto;
+    }
+
+    /* =====================================================
+       ÁREA DO TOPO — degradê branco cobrindo logo + headline
+       Vai de rgba(255,255,255,0.40) no topo até transparente
+       no final do bloco (logo + headline).
+    ===================================================== */
+    .hero {
+      position: relative;
+      padding: 20px 0 24px;
+      margin-bottom: 4px;
+    }
+
+    /* Degradê branco: 40% no topo → 0% no fim */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 0 0 24px 24px;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.40) 0%,
+        rgba(255, 255, 255, 0.00) 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Garante que logo e headline fiquem acima do degradê */
+    .logo,
+    .headline {
+      position: relative;
+      z-index: 1;
     }
 
     /* LOGO */
     .logo {
-      width: 176px; /* ~20% menor que 220px */
+      width: 176px;
       margin: 0 auto 14px;
     }
 
@@ -84,13 +126,16 @@
       text-align: center;
       font-size: 0.86rem;
       line-height: 1.5;
-      margin-bottom: 20px;
+      margin-bottom: 0;
       font-weight: 500;
-      color: #ffffff;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+      color: #1a3347;
+      text-shadow: 0 1px 4px rgba(255,255,255,0.4);
     }
 
-    .headline strong { font-weight: 700; }
+    .headline strong {
+      font-weight: 700;
+      color: #1a3347;
+    }
 
     /* =====================================================
        CAIXAS — 50% transparência + glassmorphism
@@ -99,7 +144,7 @@
     .faq-box,
     .location-box,
     .team-box {
-      background: rgba(34, 108, 158, 0.50);           /* ~50% */
+      background: rgba(34, 108, 158, 0.50);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255,255,255,0.20);
@@ -111,7 +156,7 @@
 
     /* BOX AGENDE */
     .big-box {
-      padding: 14px 16px; /* menor que 18x20 */
+      padding: 14px 16px;
       text-align: center;
     }
 
@@ -229,12 +274,6 @@
       gap: 8px;
     }
 
-    /* FOTO retangular com cantos arredondados
-       Substitua cada .team-photo-N pelo link RAW da foto no CSS:
-       .team-photo-1 → profissional 1
-       .team-photo-2 → profissional 2
-       .team-photo-3 → profissional 3
-    */
     .team-photo {
       width: 100%;
       max-width: 260px;
@@ -257,19 +296,16 @@
     .team-photo-3 {
       background-image: url('COLE_AQUI_LINK_RAW_FOTO_PROFISSIONAL_3');
     }
-    /* Para adicionar mais profissionais, copie a linha acima
-       e crie .team-photo-4, .team-photo-5 etc. */
 
-    /* NOME imediatamente abaixo da foto */
     .team-name {
       font-family: 'Poppins', system-ui, -apple-system, sans-serif;
       font-weight: 600;
       font-size: 0.88rem;
       text-align: center;
       margin: 0;
+      line-height: 1.5;
     }
 
-    /* CARGO/ESPECIALIDADE abaixo do nome */
     .team-role {
       font-family: 'Poppins', system-ui, -apple-system, sans-serif;
       font-size: 0.75rem;
@@ -293,7 +329,6 @@
       gap: 12px;
     }
 
-    /* ÍCONE MAPA */
     .location-pin {
       width: 40px;
       height: 40px;
@@ -326,14 +361,14 @@
 
     /* DESKTOP */
     @media (min-width: 768px) {
-      body {
-        background-image: url('COLE_AQUI_LINK_RAW_IMAGEM_FUNDO');
+      body::after {
         background-position: center center;
       }
-      .page  { padding: 28px 0 44px; }
+      .page  { padding: 0 0 44px; }
       .card  { max-width: 380px; }
       .accordion-title,
       .big-box__title { font-size: 1.05rem; }
+      .hero { padding: 28px 0 28px; }
     }
   </style>
 </head>
@@ -341,19 +376,24 @@
   <div class="page">
     <main class="card" aria-label="Inclusiva Odontologia">
 
-      <!-- LOGO -->
-      <div class="logo">
-        <img
-          src="https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/inclusiva%20logo.png"
-          alt="Logo Inclusiva Odontologia"
-        />
-      </div>
+      <!-- ÁREA DO TOPO COM DEGRADÊ BRANCO -->
+      <div class="hero">
 
-      <!-- TEXTO PRINCIPAL -->
-      <p class="headline">
-        Somos focados em atender quem outros dentistas não conseguem:<br />
-        <strong>pacientes com necessidades especiais, fobia dentária ou ansiedade extrema.</strong>
-      </p>
+        <!-- LOGO -->
+        <div class="logo">
+          <img
+            src="https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/inclusiva%20logo.png"
+            alt="Logo Inclusiva Odontologia"
+          />
+        </div>
+
+        <!-- TEXTO PRINCIPAL -->
+        <p class="headline">
+          Somos focados em atender quem outros dentistas não conseguem:<br />
+          <strong>pacientes com necessidades especiais, fobia dentária ou ansiedade extrema.</strong>
+        </p>
+
+      </div><!-- fim .hero -->
 
       <!-- BOX: AGENDE SUA CONSULTA -->
       <section class="big-box" aria-label="Agendamento de consulta">
@@ -382,42 +422,23 @@
           <div class="accordion-inner">
             <div class="faq-item">
               <div class="faq-question">Quem pode ser atendido na Inclusiva?</div>
-              <div class="faq-answer">
-                Atendemos crianças, adultos e idosos com necessidades especiais,
-                pessoas com fobia de dentista, ansiedade extrema ou que já
-                tiveram experiências traumáticas em consultório.
-              </div>
+              <div class="faq-answer">Atendemos crianças, adultos e idosos com necessidades especiais, pessoas com fobia de dentista, ansiedade extrema ou que já tiveram experiências traumáticas em consultório.</div>
             </div>
             <div class="faq-item">
               <div class="faq-question">Vocês trabalham com sedação?</div>
-              <div class="faq-answer">
-                Sim. Trabalhamos com sedação monitorada por médico anestesista,
-                considerada padrão ouro para pacientes com medo intenso ou
-                quadro médico mais delicado.
-              </div>
+              <div class="faq-answer">Sim. Trabalhamos com sedação monitorada por médico anestesista, considerada padrão ouro para pacientes com medo intenso ou quadro médico mais delicado.</div>
             </div>
             <div class="faq-item">
               <div class="faq-question">A sedação é segura?</div>
-              <div class="faq-answer">
-                Sim. Antes da sedação é feita avaliação clínica, revisão de
-                exames e todo o procedimento é acompanhado por anestesista com
-                monitorização contínua de sinais vitais.
-              </div>
+              <div class="faq-answer">Sim. Antes da sedação é feita avaliação clínica, revisão de exames e todo o procedimento é acompanhado por anestesista com monitorização contínua de sinais vitais.</div>
             </div>
             <div class="faq-item">
               <div class="faq-question">Atendem apenas pacientes com necessidades especiais?</div>
-              <div class="faq-answer">
-                Não. Também recebemos pessoas que têm muito medo de dentista,
-                pacientes que adiam tratamento há anos, e familiares que
-                procuram um ambiente mais calmo e preparado.
-              </div>
+              <div class="faq-answer">Não. Também recebemos pessoas que têm muito medo de dentista, pacientes que adiam tratamento há anos, e familiares que procuram um ambiente mais calmo e preparado.</div>
             </div>
             <div class="faq-item">
               <div class="faq-question">Como faço para agendar uma avaliação?</div>
-              <div class="faq-answer">
-                Clique no botão de WhatsApp acima, envie uma mensagem rápida e
-                nossa equipe marcará o melhor horário para você ou seu familiar.
-              </div>
+              <div class="faq-answer">Clique no botão de WhatsApp acima, envie uma mensagem rápida e nossa equipe marcará o melhor horário para você ou seu familiar.</div>
             </div>
           </div>
         </div>
@@ -455,9 +476,7 @@
               <!-- PROFISSIONAL 1 -->
               <div class="team-member">
                 <div class="team-photo team-photo-1"></div>
-                <div class="team-name">Dr. Pablo Nunes<br>
-  Dra. Lígia<br>
-  Dra. Lígia</div>
+                <div class="team-name">Dr. Pablo Nunes<br>Dra. Lígia</div>
                 <div class="team-role">Especialidade · CRO 00000</div>
                 <div class="team-sep"></div>
               </div>
