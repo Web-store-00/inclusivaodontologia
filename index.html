@@ -5,38 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inclusiva Odontologia</title>
 
-  <!-- TAG DO GOOGLE (GA4 / GOOGLE TAG MANAGER)
-       Cole aqui dentro o script que o Google te der -->
+  <!-- TAG DO GOOGLE -->
   <!--
   <script>
-    // EXEMPLO: Google Tag (gtag.js)
-    // Cole aqui o código do Google Analytics / Google Tag
+    // Cole aqui o código do Google Tag Manager
   </script>
   -->
 
-  <!-- TAG DA META (PIXEL DO FACEBOOK/INSTAGRAM)
-       Cole aqui dentro o script que a Meta te der -->
+  <!-- TAG DA META (PIXEL ID: 1594662665192072) -->
   <!--
   <script>
-    // EXEMPLO: Meta Pixel
     // Cole aqui o código do Pixel da Meta
   </script>
   -->
 
   <style>
-    /* Fonte Capitana */
-    @import url('https://fonts.googleapis.com/css2?family=Capitana:wght@400;500;700;800&display=swap');
-
-    :root {
-      --bg-page-top: #dfe5ea;
-      --bg-page-bottom: #b8d4e6;
-      --blue-main: #226c9e;
-      --blue-dark: #1b567d;
-      --text-main: #1f3a4d;
-      --white: #ffffff;
-      --radius-box: 28px;
-      --shadow-box: 0 12px 30px rgba(0, 0, 0, 0.25);
-    }
+    /* Fonte semelhante à Capitana (Google Fonts) */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
     * {
       box-sizing: border-box;
@@ -44,196 +29,274 @@
       padding: 0;
     }
 
+    /* =====================================================
+       IMAGEM DE FUNDO
+       Tamanho ideal: 1080x1920px (mobile) | 1920x1080px (desktop)
+       Substitua COLE_AQUI_LINK_RAW_IMAGEM_FUNDO pelo link RAW
+    ===================================================== */
     body {
-      font-family: 'Capitana', system-ui, -apple-system, sans-serif;
-      background: linear-gradient(to bottom, var(--bg-page-top), var(--bg-page-bottom));
-      color: var(--text-main);
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
+      background-color: #9bbdd4;
+      background-image: url('COLE_AQUI_LINK_RAW_IMAGEM_FUNDO');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      color: #ffffff;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 40, 65, 0.25);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
 
-    /* LAYOUT GERAL */
     .page {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 24px 16px 40px;
+      padding: 20px 14px 36px;
     }
 
     .card {
       width: 100%;
-      max-width: 420px;
+      max-width: 336px; /* ~20% menor que 420px */
       margin: 0 auto;
     }
 
-    /* LOGO E TEXTO PRINCIPAL */
+    /* LOGO */
     .logo {
-      width: 220px;
-      margin: 0 auto 18px;
+      width: 176px; /* ~20% menor que 220px */
+      margin: 0 auto 14px;
     }
 
+    /* TEXTO PRINCIPAL */
     .headline {
       text-align: center;
-      font-size: 0.98rem;
+      font-size: 0.86rem;
       line-height: 1.5;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       font-weight: 500;
+      color: #ffffff;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5);
     }
 
-    .headline strong {
-      font-weight: 700;
+    .headline strong { font-weight: 700; }
+
+    /* =====================================================
+       CAIXAS — 50% transparência + glassmorphism
+    ===================================================== */
+    .big-box,
+    .faq-box,
+    .location-box,
+    .team-box {
+      background: rgba(34, 108, 158, 0.50);           /* ~50% */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.20);
+      color: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+      margin-bottom: 12px;
     }
 
-    /* BOX AGENDE SUA CONSULTA */
+    /* BOX AGENDE */
     .big-box {
-      background: var(--blue-main);
-      color: var(--white);
-      border-radius: var(--radius-box);
-      padding: 18px 20px;
+      padding: 14px 16px; /* menor que 18x20 */
       text-align: center;
-      box-shadow: var(--shadow-box);
-      margin-bottom: 18px;
     }
 
     .big-box__title {
-      font-size: 1.2rem;
-      font-weight: 800;
+      font-size: 0.98rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
-      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
     }
 
     .big-box__subtitle {
-      font-size: 0.9rem;
+      font-size: 0.78rem;
       font-weight: 500;
     }
 
     .whats-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: var(--white);
-      color: var(--blue-main);
+      gap: 7px;
+      margin-top: 8px;
+      padding: 8px 16px;
+      background: #ffffff;
+      color: #226c9e;
       border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 600;
+      font-size: 0.82rem;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
     }
 
-    /* ÍCONE WHATSAPP COMO IMAGEM DE FUNDO
-       Substitua "COLE_AQUI_LINK_DA_IMAGEM_WHATSAPP" pelo link RAW da imagem */
+    /* ÍCONE WHATSAPP */
     .whats-icon {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/WhatsApp.svg.png');
       background-size: cover;
       background-position: center;
       flex-shrink: 0;
     }
 
-    /* BOX DÚVIDAS (ACCORDION) */
-    .faq-box {
-      background: var(--blue-main);
-      color: var(--white);
-      border-radius: var(--radius-box);
-      box-shadow: var(--shadow-box);
-      overflow: hidden;
-      margin-bottom: 18px;
-    }
-
-    .faq-header {
-      padding: 18px 20px 10px;
+    /* =====================================================
+       ACCORDION (FAQ e Equipe)
+    ===================================================== */
+    .accordion-header {
+      padding: 14px 16px 8px;
       text-align: center;
       cursor: pointer;
       user-select: none;
     }
 
-    .faq-title {
-      font-size: 1.2rem;
-      font-weight: 800;
+    .accordion-title {
+      font-size: 0.98rem;
+      font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 4px;
       letter-spacing: 0.05em;
+      margin-bottom: 3px;
     }
 
-    .faq-divider {
+    .accordion-divider {
       width: 80%;
       height: 2px;
-      background: rgba(255, 255, 255, 0.6);
-      margin: 4px auto 8px;
+      background: rgba(255,255,255,0.50);
+      margin: 3px auto 6px;
     }
 
-    .faq-first-question {
-      font-size: 0.95rem;
+    .accordion-preview {
+      font-size: 0.82rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
-    .faq-arrow {
-      font-size: 1.3rem;
+    .accordion-arrow {
+      display: block;
+      font-size: 1.2rem;
       line-height: 1;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease;
     }
 
-    .faq-box.open .faq-arrow {
+    .faq-box.open  .accordion-arrow,
+    .team-box.open .accordion-arrow {
       transform: rotate(180deg);
     }
 
-    /* CONTEÚDO EXPANDIDO (começa escondido) */
-    .faq-content-wrapper {
+    .accordion-content {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
-      background: #1f5b88;
+      transition: max-height 0.35s ease;
+      background: rgba(27, 86, 125, 0.52);
     }
 
-    .faq-content-inner {
-      padding: 10px 20px 18px;
-      font-size: 0.9rem;
+    .accordion-inner {
+      padding: 8px 16px 14px;
+      font-size: 0.80rem;
       text-align: left;
     }
 
-    .faq-item + .faq-item {
-      margin-top: 10px;
+    /* FAQ */
+    .faq-item + .faq-item { margin-top: 8px; }
+    .faq-question { font-weight: 600; margin-bottom: 2px; }
+    .faq-answer   { font-weight: 400; opacity: 0.92; }
+
+    /* =====================================================
+       BOX NOSSA EQUIPE
+    ===================================================== */
+    .team-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .faq-question {
-      font-weight: 700;
-      margin-bottom: 2px;
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
 
-    .faq-answer {
-      font-weight: 400;
+    /* FOTO retangular com cantos arredondados
+       Substitua cada .team-photo-N pelo link RAW da foto no CSS:
+       .team-photo-1 → profissional 1
+       .team-photo-2 → profissional 2
+       .team-photo-3 → profissional 3
+    */
+    .team-photo {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 12px;
+      border: 3px solid rgba(255,255,255,0.70);
+      background-color: rgba(255,255,255,0.20);
+      background-size: cover;
+      background-position: center top;
+      flex-shrink: 0;
+      aspect-ratio: 4 / 3;
+    }
+
+    /* ↓ SUBSTITUA PELOS LINKS RAW DAS FOTOS ↓ */
+    .team-photo-1 {
+      background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/foto%20equipe%201%20inclusiva.png');
+    }
+    .team-photo-2 {
+      background-image: url('COLE_AQUI_LINK_RAW_FOTO_PROFISSIONAL_2');
+    }
+    .team-photo-3 {
+      background-image: url('COLE_AQUI_LINK_RAW_FOTO_PROFISSIONAL_3');
+    }
+    /* Para adicionar mais profissionais, copie a linha acima
+       e crie .team-photo-4, .team-photo-5 etc. */
+
+    /* NOME imediatamente abaixo da foto */
+    .team-name {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-align: center;
+      margin: 0;
+    }
+
+    /* CARGO/ESPECIALIDADE abaixo do nome */
+    .team-role {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      text-align: center;
+      opacity: 0.88;
+      margin: 0;
+    }
+
+    .team-sep {
+      width: 80%;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      margin-top: 4px;
     }
 
     /* BOX LOCALIZAÇÃO */
     .location-box {
-      background: var(--blue-main);
-      color: var(--white);
-      border-radius: var(--radius-box);
-      padding: 18px 20px 16px;
-      box-shadow: var(--shadow-box);
+      padding: 14px 16px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    /* ÍCONE MAPA COMO IMAGEM DE FUNDO
-       Substitua "COLE_AQUI_LINK_DA_IMAGEM_MAPA" pelo link RAW da imagem */
+    /* ÍCONE MAPA */
     .location-pin {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       flex-shrink: 0;
       background-image: url('https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/map.png');
       background-size: cover;
@@ -241,66 +304,61 @@
     }
 
     .location-text-main {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 4px;
+      font-size: 0.92rem;
+      font-weight: 700;
       text-transform: uppercase;
+      margin-bottom: 3px;
     }
+
+    .location-desc { font-size: 0.76rem; opacity: 0.92; }
 
     .location-btn {
       display: inline-block;
-      margin-top: 4px;
-      padding: 7px 16px;
+      margin-top: 6px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: var(--white);
-      color: var(--blue-main);
-      font-size: 0.9rem;
-      font-weight: 700;
+      background: #ffffff;
+      color: #226c9e;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
     }
 
     /* DESKTOP */
     @media (min-width: 768px) {
-      .page {
-        padding: 32px 0 48px;
+      body {
+        background-image: url('COLE_AQUI_LINK_RAW_IMAGEM_FUNDO');
+        background-position: center center;
       }
-
-      .card {
-        max-width: 480px;
-      }
-
-      .headline {
-        font-size: 1.05rem;
-      }
-
-      .big-box__title,
-      .faq-title {
-        font-size: 1.3rem;
-      }
+      .page  { padding: 28px 0 44px; }
+      .card  { max-width: 380px; }
+      .accordion-title,
+      .big-box__title { font-size: 1.05rem; }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <main class="card" aria-label="Inclusiva Odontologia - página inicial">
-      <!-- LOGO
-           Substitua "COLE_AQUI_LINK_DA_LOGO" pelo link RAW da logo -->
-      
+    <main class="card" aria-label="Inclusiva Odontologia">
+
+      <!-- LOGO -->
       <div class="logo">
-        <img src="https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/inclusiva%20logo.png" alt="Logo Inclusiva Odontologia" />
+        <img
+          src="https://raw.githubusercontent.com/Web-store-00/inclusivaodontologia/refs/heads/main/inclusiva%20logo.png"
+          alt="Logo Inclusiva Odontologia"
+        />
       </div>
 
       <!-- TEXTO PRINCIPAL -->
       <p class="headline">
         Somos focados em atender quem outros dentistas não conseguem:<br />
-        <strong>pacientes com necessidades especiais, fobia dentária ou
-        ansiedade extrema.</strong>
+        <strong>pacientes com necessidades especiais, fobia dentária ou ansiedade extrema.</strong>
       </p>
 
       <!-- BOX: AGENDE SUA CONSULTA -->
       <section class="big-box" aria-label="Agendamento de consulta">
         <div class="big-box__title">Agende sua consulta!</div>
         <div class="big-box__subtitle">Atendimento humanizado e com sedação segura.</div>
-
         <a
           class="whats-btn"
           href="https://wa.me/5599999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20na%20Inclusiva%20Odontologia."
@@ -312,74 +370,53 @@
         </a>
       </section>
 
-      <!-- BOX: TIRE SUAS DÚVIDAS (ACCORDION) -->
+      <!-- BOX: TIRE SUAS DÚVIDAS -->
       <section class="faq-box" id="faqBox">
-        <div class="faq-header" id="faqToggle" aria-expanded="false">
-          <div class="faq-title">Tire suas dúvidas</div>
-          <div class="faq-divider"></div>
-          <!-- PRIMEIRA PERGUNTA (sempre visível) -->
-          <div class="faq-first-question">
-            Quem pode ser atendido na Inclusiva?
-          </div>
-          <!-- SETA -->
-          <div class="faq-arrow" aria-hidden="true">⌄</div>
+        <div class="accordion-header" id="faqToggle" aria-expanded="false">
+          <div class="accordion-title">Tire suas dúvidas</div>
+          <div class="accordion-divider"></div>
+          <div class="accordion-preview">Quem pode ser atendido na Inclusiva?</div>
+          <span class="accordion-arrow" aria-hidden="true">⌄</span>
         </div>
-
-        <!-- CONTEÚDO EXPANDIDO (fica escondido até clicar) -->
-        <div class="faq-content-wrapper" id="faqContent">
-          <div class="faq-content-inner">
+        <div class="accordion-content" id="faqContent">
+          <div class="accordion-inner">
             <div class="faq-item">
-              <div class="faq-question">
-                Quem pode ser atendido na Inclusiva?
-              </div>
+              <div class="faq-question">Quem pode ser atendido na Inclusiva?</div>
               <div class="faq-answer">
                 Atendemos crianças, adultos e idosos com necessidades especiais,
                 pessoas com fobia de dentista, ansiedade extrema ou que já
                 tiveram experiências traumáticas em consultório.
               </div>
             </div>
-
             <div class="faq-item">
-              <div class="faq-question">
-                Vocês trabalham com sedação?
-              </div>
+              <div class="faq-question">Vocês trabalham com sedação?</div>
               <div class="faq-answer">
                 Sim. Trabalhamos com sedação monitorada por médico anestesista,
                 considerada padrão ouro para pacientes com medo intenso ou
                 quadro médico mais delicado.
               </div>
             </div>
-
             <div class="faq-item">
-              <div class="faq-question">
-                A sedação é segura?
-              </div>
+              <div class="faq-question">A sedação é segura?</div>
               <div class="faq-answer">
                 Sim. Antes da sedação é feita avaliação clínica, revisão de
                 exames e todo o procedimento é acompanhado por anestesista com
                 monitorização contínua de sinais vitais.
               </div>
             </div>
-
             <div class="faq-item">
-              <div class="faq-question">
-                Atendem apenas pacientes com necessidades especiais?
-              </div>
+              <div class="faq-question">Atendem apenas pacientes com necessidades especiais?</div>
               <div class="faq-answer">
                 Não. Também recebemos pessoas que têm muito medo de dentista,
                 pacientes que adiam tratamento há anos, e familiares que
                 procuram um ambiente mais calmo e preparado.
               </div>
             </div>
-
             <div class="faq-item">
-              <div class="faq-question">
-                Como faço para agendar uma avaliação?
-              </div>
+              <div class="faq-question">Como faço para agendar uma avaliação?</div>
               <div class="faq-answer">
-                Você pode clicar no botão de WhatsApp acima, enviar uma
-                mensagem rápida e nossa equipe fará algumas perguntas iniciais
-                para marcar o melhor horário para você ou seu familiar.
+                Clique no botão de WhatsApp acima, envie uma mensagem rápida e
+                nossa equipe marcará o melhor horário para você ou seu familiar.
               </div>
             </div>
           </div>
@@ -389,11 +426,9 @@
       <!-- BOX: LOCALIZAÇÃO -->
       <section class="location-box" aria-label="Nossa localização">
         <div class="location-pin"></div>
-
         <div>
           <div class="location-text-main">NOSSA LOCALIZAÇÃO</div>
-          <div>Estamos em endereço acessível e preparado para receber você.</div>
-
+          <div class="location-desc">Endereço acessível e preparado para receber você.</div>
           <a
             class="location-btn"
             href="https://www.google.com/maps"
@@ -404,34 +439,75 @@
           </a>
         </div>
       </section>
+
+      <!-- BOX: NOSSA EQUIPE -->
+      <section class="team-box" id="teamBox">
+        <div class="accordion-header" id="teamToggle" aria-expanded="false">
+          <div class="accordion-title">Nossa Equipe</div>
+          <div class="accordion-divider"></div>
+          <div class="accordion-preview">Conheça nossos profissionais</div>
+          <span class="accordion-arrow" aria-hidden="true">⌄</span>
+        </div>
+        <div class="accordion-content" id="teamContent">
+          <div class="accordion-inner">
+            <div class="team-grid">
+
+              <!-- PROFISSIONAL 1 -->
+              <div class="team-member">
+                <div class="team-photo team-photo-1"></div>
+                <div class="team-name">Dr. Pablo Nunes<br>
+  Dra. Lígia<br>
+  Dra. Lígia</div>
+                <div class="team-role">Especialidade · CRO 00000</div>
+                <div class="team-sep"></div>
+              </div>
+
+              <!-- PROFISSIONAL 2 -->
+              <div class="team-member">
+                <div class="team-photo team-photo-2"></div>
+                <div class="team-name">Dr(a). Nome Completo</div>
+                <div class="team-role">Especialidade · CRO 00000</div>
+                <div class="team-sep"></div>
+              </div>
+
+              <!-- PROFISSIONAL 3 -->
+              <div class="team-member">
+                <div class="team-photo team-photo-3"></div>
+                <div class="team-name">Dr(a). Nome Completo</div>
+                <div class="team-role">Especialidade · CRO 00000</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
   <script>
-    // Accordion simples para o box "Tire suas dúvidas"
-    const faqBox = document.getElementById("faqBox");
-    const faqToggle = document.getElementById("faqToggle");
-    const faqContent = document.getElementById("faqContent");
-
-    function toggleFaq() {
-      const isOpen = faqBox.classList.contains("open");
-
-      if (isOpen) {
-        faqBox.classList.remove("open");
-        faqContent.style.maxHeight = "0px";
-        faqToggle.setAttribute("aria-expanded", "false");
-      } else {
-        faqBox.classList.add("open");
-        faqContent.style.maxHeight = faqContent.scrollHeight + "px";
-        faqToggle.setAttribute("aria-expanded", "true");
-      }
+    function setupAccordion(boxId, toggleId, contentId) {
+      const box     = document.getElementById(boxId);
+      const toggle  = document.getElementById(toggleId);
+      const content = document.getElementById(contentId);
+      content.style.maxHeight = "0px";
+      toggle.addEventListener("click", () => {
+        const isOpen = box.classList.contains("open");
+        if (isOpen) {
+          box.classList.remove("open");
+          content.style.maxHeight = "0px";
+          toggle.setAttribute("aria-expanded", "false");
+        } else {
+          box.classList.add("open");
+          content.style.maxHeight = content.scrollHeight + "px";
+          toggle.setAttribute("aria-expanded", "true");
+        }
+      });
     }
 
-    faqToggle.addEventListener("click", toggleFaq);
-
-    // Garante que começa fechado
     window.addEventListener("load", () => {
-      faqContent.style.maxHeight = "0px";
+      setupAccordion("faqBox",  "faqToggle",  "faqContent");
+      setupAccordion("teamBox", "teamToggle", "teamContent");
     });
   </script>
 </body>
